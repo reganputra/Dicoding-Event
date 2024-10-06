@@ -28,7 +28,7 @@ class UpcomingEventAdapter: ListAdapter<ListEventsItem, UpcomingEventAdapter.Vie
     class ViewHolder(private val binding: EventRowBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(event: ListEventsItem){
             Glide.with(binding.root)
-                .load(event.mediaCover)
+                .load(event.imageLogo)
                 .into(binding.ivEventImage)
                 binding.tvDetailName.text = event.name
         }
