@@ -19,10 +19,10 @@ class UpcomingEventModel : ViewModel() {
     val isLoading: LiveData<Boolean> = _isLoading
 
     init {
-        fetchUpcomingEvent()
+        getUpcomingEvent()
     }
 
-    private fun fetchUpcomingEvent() {
+    private fun getUpcomingEvent() {
         _isLoading.postValue(true)
         val client = ApiConfig.getApiService().getListEvents("1")
         client.enqueue(object : Callback<EventResponse> {

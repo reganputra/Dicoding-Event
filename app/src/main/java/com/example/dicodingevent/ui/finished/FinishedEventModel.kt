@@ -20,10 +20,10 @@ class FinishedEventModel : ViewModel() {
 
 
     init {
-        fetchFinishedEvent()
+        getFinishedEvent()
     }
 
-    private fun fetchFinishedEvent(){
+    private fun getFinishedEvent(){
         _isLoading.postValue(true)
         val client = ApiConfig.getApiService().getListEvents("0")
 
