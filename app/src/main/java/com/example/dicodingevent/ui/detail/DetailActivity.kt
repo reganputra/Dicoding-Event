@@ -3,6 +3,7 @@ package com.example.dicodingevent.ui.detail
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
@@ -25,6 +26,10 @@ class DetailActivity : AppCompatActivity() {
         val detailViewModel = ViewModelProvider(this)[DetailViewModel::class.java]
         val detailId = intent.getIntExtra(EXTRA_EVENT, 0)
         detailViewModel.getDetailEvent(detailId)
+
+        detailViewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
 
         detailViewModel.detailEvent.observe(this) { detailEvent ->
             if (detailEvent != null) {
@@ -49,6 +54,14 @@ class DetailActivity : AppCompatActivity() {
                     startActivity(redirect)
                 }
             }
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar3.visibility = View.VISIBLE
+        } else {
+            binding.progressBar3.visibility = View.GONE
         }
     }
 }
