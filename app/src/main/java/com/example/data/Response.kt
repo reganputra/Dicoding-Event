@@ -2,59 +2,59 @@ package com.example.data
 
 import com.google.gson.annotations.SerializedName
 
-data class Response(
-
-	@field:SerializedName("listEvents")
-	val listEvents: List<ListEventsItem> = listOf(),
+data class Responses(
 
 	@field:SerializedName("error")
-	val error: Boolean? = null,
+	val error: Boolean,
 
 	@field:SerializedName("message")
-	val message: String? = null
+	val message: String,
+
+	@field:SerializedName("event")
+	val event: Event
 )
 
-data class DetailEventResponse(
+data class Event(
 
 	@field:SerializedName("summary")
-	val summary: String? = null,
+	val summary: String,
 
 	@field:SerializedName("mediaCover")
-	val mediaCover: String? = null,
+	val mediaCover: String,
 
 	@field:SerializedName("registrants")
-	val registrants: Int? = null,
+	val registrants: Int,
 
 	@field:SerializedName("imageLogo")
-	val imageLogo: String? = null,
+	val imageLogo: String,
 
 	@field:SerializedName("link")
-	val link: String? = null,
+	val link: String,
 
 	@field:SerializedName("description")
-	val description: String? = null,
+	val description: String,
 
 	@field:SerializedName("ownerName")
-	val ownerName: String? = null,
+	val ownerName: String,
 
 	@field:SerializedName("cityName")
-	val cityName: String? = null,
+	val cityName: String,
 
 	@field:SerializedName("quota")
-	val quota: Int? = null,
+	val quota: Int,
 
 	@field:SerializedName("name")
-	val name: String? = null,
+	val name: String,
 
 	@field:SerializedName("id")
-	val id: Int? = null,
+	val id: Int,
 
 	@field:SerializedName("beginTime")
-	val beginTime: String? = null,
+	val beginTime: String,
 
 	@field:SerializedName("endTime")
-	val endTime: String? = null,
+	val endTime: String,
 
 	@field:SerializedName("category")
-	val category: String? = null
+	val category: String
 )

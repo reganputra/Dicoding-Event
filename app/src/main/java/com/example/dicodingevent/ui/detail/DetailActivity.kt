@@ -1,11 +1,16 @@
 package com.example.dicodingevent.ui.detail
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.dicodingevent.R
+import androidx.core.text.HtmlCompat
+
+import androidx.lifecycle.ViewModelProvider
+import com.adapter.UpcomingEventAdapter.Companion.EXTRA_EVENT
+import com.bumptech.glide.Glide
+
 import com.example.dicodingevent.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
@@ -17,6 +22,33 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val detailViewModel = ViewModelProvider(this)[DetailViewModel::class.java]
+        val detailId = intent.getIntExtra(EXTRA_EVENT, 0)
+        detailViewModel.getDetailEvent(detailId)
 
+        detailViewModel.detailEvent.observe(this) { detailEvent ->
+            if (detailEvent != null) {
+                Glide.with(this)
+                    .load(detailEvent.event.imageLogo)
+                    .into(binding.ivDetailImage)
+                binding.tvEventName.text = detailEvent.event.name
+                binding.tvOwnerName.text = detailEvent.event.ownerName
+                binding.tvBeginTime.text = detailEvent.event.beginTime
+                binding.tvQuota.text = detailEvent.event.quota.toString()
+
+                binding.tvDescription.text = HtmlCompat.fromHtml(
+                    detailEvent.event.description,
+                    HtmlCompat.FROM_HTML_MODE_LEGACY
+                )
+
+                binding.btnAction.setOnClickListener {
+                    val redirect = Intent.createChooser(Intent().apply {
+                        action = Intent.ACTION_VIEW
+                        data = Uri.parse(detailEvent.event.link)
+                    }, null)
+                    startActivity(redirect)
+                }
+            }
+        }
     }
 }
