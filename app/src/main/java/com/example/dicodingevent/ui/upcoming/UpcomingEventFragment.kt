@@ -4,17 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.adapter.UpcomingEventAdapter
+import com.adapter.EventAdapter
 import com.example.dicodingevent.databinding.FragmentUpcomingBinding
+import com.example.dicodingevent.ui.detail.DetailViewModel
 
 class UpcomingEventFragment : Fragment() {
 
     private lateinit var binding: FragmentUpcomingBinding
+    private val upcomingEventModel: UpcomingEventModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -23,10 +26,9 @@ class UpcomingEventFragment : Fragment() {
         val itemDecoration = DividerItemDecoration(requireContext(), layoutManager.orientation)
         binding.rvUpcoming.addItemDecoration(itemDecoration)
 
-        val upcomingEventModel = ViewModelProvider(this)[UpcomingEventModel::class.java]
 
         upcomingEventModel.listEvents.observe(viewLifecycleOwner) { listEvents ->
-            val adapter = UpcomingEventAdapter()
+            val adapter = EventAdapter()
             adapter.submitList(listEvents)
             binding.rvUpcoming.adapter = adapter
         }
@@ -53,9 +55,4 @@ class UpcomingEventFragment : Fragment() {
             binding.pbLoading.visibility = View.GONE
         }
     }
-
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        _binding = null
-//    }
 }

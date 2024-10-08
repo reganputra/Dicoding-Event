@@ -4,17 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.adapter.UpcomingEventAdapter
+import com.adapter.EventAdapter
 import com.example.dicodingevent.databinding.FragmentFinishedBinding
 
 class FinishedEventFragment : Fragment() {
 
    private lateinit var binding: FragmentFinishedBinding
+    private val finishedEventModel: FinishedEventModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -23,10 +24,8 @@ class FinishedEventFragment : Fragment() {
         val itemDecoration = DividerItemDecoration(requireContext(), layoutManager.orientation)
         binding.rvFinished.addItemDecoration(itemDecoration)
 
-        val finishedEventModel = ViewModelProvider(this)[FinishedEventModel::class.java]
-
         finishedEventModel.listEvents.observe(viewLifecycleOwner) { listEvents ->
-            val adapter = UpcomingEventAdapter()
+            val adapter = EventAdapter()
             adapter.submitList(listEvents)
             binding.rvFinished.adapter = adapter
         }
@@ -55,8 +54,4 @@ class FinishedEventFragment : Fragment() {
         }
     }
 
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        binding = null
-//    }
 }

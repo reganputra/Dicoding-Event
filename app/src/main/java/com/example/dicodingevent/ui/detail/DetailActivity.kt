@@ -4,18 +4,18 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
-
-import androidx.lifecycle.ViewModelProvider
-import com.adapter.UpcomingEventAdapter.Companion.EXTRA_EVENT
+import com.adapter.EventAdapter.Companion.EXTRA_EVENT
 import com.bumptech.glide.Glide
 
 import com.example.dicodingevent.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
 
+    private val detailViewModel by viewModels<DetailViewModel>()
     private lateinit var binding: ActivityDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +23,6 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val detailViewModel = ViewModelProvider(this)[DetailViewModel::class.java]
         val detailId = intent.getIntExtra(EXTRA_EVENT, 0)
         detailViewModel.getDetailEvent(detailId)
 
@@ -39,19 +38,20 @@ class DetailActivity : AppCompatActivity() {
                 binding.tvEventName.text = detailEvent.event.name
                 binding.tvOwnerName.text = detailEvent.event.ownerName
                 binding.tvBeginTime.text = detailEvent.event.beginTime
-                binding.tvQuota.text = detailEvent.event.quota.toString()
+                binding.tvQuota.text ="Sisa Kuota: ${detailEvent.event!!.quota - detailEvent.event!!.registrants}"
 
+//                (detailEvent.event.quota - detailEvent.event.registrants).toString()
                 binding.tvDescription.text = HtmlCompat.fromHtml(
                     detailEvent.event.description,
                     HtmlCompat.FROM_HTML_MODE_LEGACY
                 )
 
                 binding.btnAction.setOnClickListener {
-                    val redirect = Intent.createChooser(Intent().apply {
+                    val openLink = Intent.createChooser(Intent().apply {
                         action = Intent.ACTION_VIEW
                         data = Uri.parse(detailEvent.event.link)
                     }, null)
-                    startActivity(redirect)
+                    startActivity(openLink)
                 }
             }
         }

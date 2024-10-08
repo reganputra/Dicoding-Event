@@ -11,7 +11,7 @@ import com.example.data.ListEventsItem
 import com.example.dicodingevent.databinding.EventRowBinding
 import com.example.dicodingevent.ui.detail.DetailActivity
 
-class UpcomingEventAdapter: ListAdapter<ListEventsItem, UpcomingEventAdapter.ViewHolder>(
+class EventAdapter: ListAdapter<ListEventsItem, EventAdapter.ViewHolder>(
     DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(
