@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
+import androidx.core.view.isVisible
 import com.adapter.EventAdapter.Companion.EXTRA_EVENT
 import com.bumptech.glide.Glide
 
@@ -38,9 +39,9 @@ class DetailActivity : AppCompatActivity() {
                 binding.tvEventName.text = detailEvent.event.name
                 binding.tvOwnerName.text = detailEvent.event.ownerName
                 binding.tvBeginTime.text = detailEvent.event.beginTime
-                binding.tvQuota.text ="Sisa Kuota: ${detailEvent.event!!.quota - detailEvent.event!!.registrants}"
+                binding.tvQuota.text =
+                    "Sisa Kuota: ${detailEvent.event!!.quota - detailEvent.event!!.registrants}"
 
-//                (detailEvent.event.quota - detailEvent.event.registrants).toString()
                 binding.tvDescription.text = HtmlCompat.fromHtml(
                     detailEvent.event.description,
                     HtmlCompat.FROM_HTML_MODE_LEGACY

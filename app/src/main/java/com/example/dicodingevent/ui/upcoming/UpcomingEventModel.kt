@@ -3,9 +3,9 @@ package com.example.dicodingevent.ui.upcoming
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.data.ApiConfig
-import com.example.data.EventResponse
-import com.example.data.ListEventsItem
+import com.example.data.remote.ApiConfig
+import com.example.data.response.EventResponse
+import com.example.data.response.ListEventsItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

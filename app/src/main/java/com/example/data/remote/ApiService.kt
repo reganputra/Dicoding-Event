@@ -1,5 +1,7 @@
-package com.example.data
+package com.example.data.remote
 
+import com.example.data.response.EventResponse
+import com.example.data.response.Responses
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

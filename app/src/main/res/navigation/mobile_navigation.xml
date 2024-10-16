@@ -18,4 +18,10 @@
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_finished" />
 
+    <fragment
+        android:id="@+id/navigation_fav"
+        android:name="com.example.dicodingevent.ui.favorite.FavouriteFragment"
+        android:label="fragment_favourite"
+        tools:layout="@layout/fragment_favourite" />
+
 </navigation>

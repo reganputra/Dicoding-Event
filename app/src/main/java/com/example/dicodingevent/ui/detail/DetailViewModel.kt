@@ -3,8 +3,8 @@ package com.example.dicodingevent.ui.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.data.ApiConfig
-import com.example.data.Responses
+import com.example.data.remote.ApiConfig
+import com.example.data.response.Responses
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
