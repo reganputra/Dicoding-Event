@@ -43,6 +43,8 @@ android {
 
 dependencies {
 
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.datastore.preferences)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)

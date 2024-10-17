@@ -115,6 +115,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ivDetailImage" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/favBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="188dp"

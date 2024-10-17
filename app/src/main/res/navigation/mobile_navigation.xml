@@ -21,7 +21,14 @@
     <fragment
         android:id="@+id/navigation_fav"
         android:name="com.example.dicodingevent.ui.favorite.FavouriteFragment"
-        android:label="fragment_favourite"
+        android:label="@string/title_fav"
         tools:layout="@layout/fragment_favourite" />
+
+    <fragment
+        android:id="@id/navigation_setting"
+        android:label="@string/title_setting"
+        tools:layout="@layout/fragment_setting"
+        android:name="com.example.dicodingevent.ui.setting.FragmentSetting"
+        />
 
 </navigation>
