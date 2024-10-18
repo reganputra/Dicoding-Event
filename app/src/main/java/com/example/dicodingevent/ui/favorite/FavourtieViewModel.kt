@@ -10,13 +10,5 @@ class FavourtieViewModel(application: Application): ViewModel() {
 
     private val mFavRepository: FavouriteRepository = FavouriteRepository(application)
 
-    fun insert(event: Event) {
-        mFavRepository.insert(event)
-    }
-
-    fun delete(event: Event) {
-        mFavRepository.delete(event)
-    }
-
     fun getAllFavEvent(): LiveData<List<Event>> = mFavRepository.getAllFavEvent()
 }

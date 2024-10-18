@@ -97,9 +97,9 @@ class DetailActivity : AppCompatActivity() {
 
     private fun updateFavoriteButtonState(isFav: Boolean) {
         if (isFav) {
-            binding.favBtn.setImageResource(R.drawable.ic_fave_white) // assuming this icon for filled heart
+            binding.favBtn.setImageResource(R.drawable.ic_fave_white)
         } else {
-            binding.favBtn.setImageResource(R.drawable.ic_fav_border) // assuming this icon for empty heart
+            binding.favBtn.setImageResource(R.drawable.ic_fav_border)
         }
     }
 }

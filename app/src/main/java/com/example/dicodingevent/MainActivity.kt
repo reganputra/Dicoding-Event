@@ -1,6 +1,7 @@
 package com.example.dicodingevent
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -18,7 +19,9 @@ import com.example.dicodingevent.ui.setting.dataStore
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var settingViewModel: SettingViewModel
+    private val settingViewModel: SettingViewModel by viewModels {
+        SettingFactory(SettingDataStore.getInstance(dataStore))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,15 +41,13 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        val dataStore = SettingDataStore.getInstance(this.dataStore)
-        val viewModel = SettingFactory(dataStore)
-        settingViewModel = ViewModelProvider(this, viewModel)[SettingViewModel::class.java]
         settingViewModel.getThemeSettings().observe(this){
-            if (it){
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else{
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            val nightMode = if (it) {
+                AppCompatDelegate.MODE_NIGHT_YES
+            } else {
+                AppCompatDelegate.MODE_NIGHT_NO
             }
+            AppCompatDelegate.setDefaultNightMode(nightMode)
         }
 
     }
